@@ -1,0 +1,1 @@
+# def to define a function and it is block scope
