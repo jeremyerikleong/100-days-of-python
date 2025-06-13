@@ -1,0 +1,1 @@
+lists = ['javascript', 'react', 'debug', 'tailwind', 'python', 'bug', 'programming', 'database']
