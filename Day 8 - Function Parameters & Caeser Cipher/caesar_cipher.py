@@ -5,28 +5,22 @@ cipher_mode = input("Type 'encode' to encrypt, type 'decode' to decrypt\n").lowe
 text = input("Text your text\n").lower()
 shift = int(input("Type your shift number\n"))
 
-def encrypt(original_text, shift_amount):
-    cipher_text = ""
-    for letter in original_text:
-        shifted_pos = alphabet.index(letter) + shift_amount
+def caesar(original_text, shift_amount, encode_or_decode):
+    if encode_or_decode == "decode" or encode_or_decode == "encode":
+        result = ""
+        if encode_or_decode == "decode":
+            shift_amount *= -1
 
-        shifted_pos %= len(alphabet)
-        cipher_text += alphabet[shifted_pos]
+        for letter in original_text:
+            if letter not in alphabet:
+                result += letter
+            else:
+                shifted_pos = alphabet.index(letter) + shift_amount
+                shifted_pos %= len(alphabet)
+                result += alphabet[shifted_pos]
 
-    print(f"Here is the encoded result: {cipher_text}")
+        print(f"Here is the {encode_or_decode} text: {result}")
+    else:
+        print("Please choose a valid cipher_mode")
 
-
-def decrypt(shifted_text, unshift_amount):
-    original_text = ""
-    for letter in shifted_text:
-        unshifted_pos = alphabet.index(letter) - unshift_amount
-
-        unshifted_pos %= len(alphabet)
-        original_text += alphabet[unshifted_pos]
-
-    print(f"Here is the encoded result: {original_text}")
-
-
-
-# encrypt(original_text = text, shift_amount = shift)
-decrypt(shifted_text = text, unshift_amount = shift)
+caesar(original_text=text, shift_amount=shift, encode_or_decode=cipher_mode)
