@@ -8,3 +8,10 @@ frameworks = {
 
 for key in frameworks:
     print(frameworks[key])
+
+
+# nesting dictionaries
+# {
+#     key: [list]
+#     keys2: {dictionary}
+# }
