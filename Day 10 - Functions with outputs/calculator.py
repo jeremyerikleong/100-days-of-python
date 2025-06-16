@@ -18,16 +18,24 @@ math_operations = {
 }
 
 print("Welcome to Py-Calculator!")
-num1 = int(input("What is the first number?\n"))
 
-for math_operation in math_operations:
-    print(math_operation)
-operation_symbol = input("Let's choose an operation:\n")
+should_accumulate = True
+num1 = float(input("What is the first number?\n"))
 
-num2 = int(input("What is the second number?\n"))
+while should_accumulate:
+    for math_operation in math_operations:
+        print(math_operation)
+    operation_symbol = input("Let's choose an operation:\n")
 
-if operation_symbol in ("+", "-", "*", "/"):
-    result = math_operations[operation_symbol](num1, num2)
-    print(f"Solution: {num1} {operation_symbol} {num2} = {result}")
-else:
-    print("Not a number, Math operation error! please enter a valid operation.")
+    num2 = float(input("What is the second number?\n"))
+
+    if operation_symbol in ("+", "-", "*", "/"):
+        result = math_operations[operation_symbol](num1, num2)
+        print(f"Solution: {num1} {operation_symbol} {num2} = {result}")
+
+        choice = input(f"Type 'y' to continue working with {result}, or type 'n' to reset the calculator\n").lower()
+
+        if choice == "y":
+            num1 = result
+    else:
+        print("Not a number, Math operation error! please enter a valid operation.")
