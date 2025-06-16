@@ -19,23 +19,31 @@ math_operations = {
 
 print("Welcome to Py-Calculator!")
 
-should_accumulate = True
-num1 = float(input("What is the first number?\n"))
+def calculator():
+    should_accumulate = True
+    num1 = float(input("What is the first number?\n"))
 
-while should_accumulate:
-    for math_operation in math_operations:
-        print(math_operation)
-    operation_symbol = input("Let's choose an operation:\n")
+    while should_accumulate:
+        for math_operation in math_operations:
+            print(math_operation)
+        operation_symbol = input("Let's choose an operation:\n")
 
-    num2 = float(input("What is the second number?\n"))
+        num2 = float(input("What is the second number?\n"))
 
-    if operation_symbol in ("+", "-", "*", "/"):
-        result = math_operations[operation_symbol](num1, num2)
-        print(f"Solution: {num1} {operation_symbol} {num2} = {result}")
+        if operation_symbol in ("+", "-", "*", "/"):
+            result = math_operations[operation_symbol](num1, num2)
+            print(f"Solution: {num1} {operation_symbol} {num2} = {result}")
 
-        choice = input(f"Type 'y' to continue working with {result}, or type 'n' to reset the calculator\n").lower()
+            choice = input(f"Type 'y' to continue working with {result}, or type 'n' to reset the calculator\n").lower()
 
-        if choice == "y":
-            num1 = result
-    else:
-        print("Not a number, Math operation error! please enter a valid operation.")
+            if choice == "y":
+                num1 = result
+            else:
+                should_accumulate = False
+                print("\n " * 20)
+                calculator() #recursion
+        else:
+            print("Not a number, Math operation error! please enter a valid operation.")
+
+
+calculator()
